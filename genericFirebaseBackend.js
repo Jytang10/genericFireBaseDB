@@ -26,7 +26,9 @@
 		}
 		this.handleDataUpdate = function(data){
 			var currentData = JSON.stringify(data.val());
-			this.callback.call(null,data.val());
+			if(currentData!=this.lastSend){
+				this.callback.call(null,data.val());
+			}
 		}
 		this.initialize();
 
