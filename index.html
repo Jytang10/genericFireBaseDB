@@ -3,16 +3,34 @@
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 	<script src="genericFirebaseBackend.js"></script>
+	<script src="firebaseConfig.js"></script>
 	<title></title>
 	<script>
 
 	var connect4Model = new GenericFBModel('abc123xyz',boardUpdated);
 	function boardUpdated(data){
-		console.log(data);
+		$("#nameDisplay").text(data.name);
+		$("#messageDisplay").text(data.message);
 	}
+	$(document).ready(function(){
+		$("#sendButton").click(function(){
+			console.log('saving');
+			connect4Model.saveState({
+				name: $("#theData > input[name=yourName]").val(),
+				message: $("#theData > input[name=message]").val()
+			});
+		});
+
+	})
 	</script>
 </head>
 <body>
-
+	<div id="nameDisplay">none</div>
+	<div id="messageDisplay">none</div>
+	<form id="theData">
+		<input name="yourName" placeholder="firstName">
+		<input name="message" placeholder="your message">
+		<button type="button" id="sendButton">save</button>
+	</form>
 </body>
 </html>

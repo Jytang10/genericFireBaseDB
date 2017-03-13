@@ -10,11 +10,8 @@
 			$.getScript('https://www.gstatic.com/firebasejs/3.6.8/firebase.js',this.start.bind(this));
 		}
 		this.start = function(){
-			var config = {
-
-		  	};
 		  	this.db=firebase;
-			this.db.initializeApp(config);
+			this.db.initializeApp(firebaseConfig);
 			this.registerListener();
 		}
 		this.saveState = function(newState){
