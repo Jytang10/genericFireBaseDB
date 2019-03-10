@@ -18,6 +18,11 @@
 			this.lastSend = JSON.stringify(newState);
 			this.db.database().ref(this.boardName).set(newState);
 		}
+		this.getAllData = function( dataCallback ){
+			this.db.database().ref(this.boardName).once('value', (snapShot)=>{
+				dataCallback( snapshot.val() );
+			});
+		}
 		this.registerListener = function(){
 			this.db.database().ref(this.boardName).on('value',this.handleDataUpdate.bind(this));
 		}
